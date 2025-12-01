@@ -4,12 +4,14 @@ import `in`.procyk.adventofcode.solutions.Advent
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.consumeAsFlow
+import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
 fun Advent.solve(
   with: FileAdventInputReader = FileAdventInputReader(),
 ) {
   runBlocking(Dispatchers.Default) {
+    @OptIn(ExperimentalTime::class)
     val today = today()
     val debug = Channel<String>()
     try {

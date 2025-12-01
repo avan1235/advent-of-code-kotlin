@@ -8,7 +8,7 @@ import kotlinx.browser.document
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun adventWebSolver(advent: Advent) {
-  ComposeViewport(document.body!!) {
+  ComposeViewport {
     AdventSolver(
       advent = advent,
       onDaySelected = { selectedDay ->

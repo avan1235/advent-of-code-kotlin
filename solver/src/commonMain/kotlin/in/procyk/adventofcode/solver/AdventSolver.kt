@@ -222,7 +222,7 @@ private inline fun <R : Any> Builder.withColorStyle(
 private enum class AdventYearStyle(val prefix: String, val suffix: String) {
   Clean("", ""),
   Json("{'year': ", "}"),
-  Php("\$year = ", ";"),
+  Php($$"$year = ", ";"),
   Yaml("year: ", ""),
   Python("year = ", ""),
   Haskell("λy.", ""),
