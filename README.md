@@ -18,7 +18,7 @@ and sharing them as an interactive solver.
 
 #### [solutions](./solutions/src/commonMain/kotlin/in/procyk/adventofcode/solutions)
 
-`implementation("in.procyk.adventofcode:solutions:1.0.2")`
+`implementation("in.procyk.adventofcode:solutions:1.1.0")`
 
 - [AdventDay](./solutions/src/commonMain/kotlin/in/procyk/adventofcode/solutions/AdventDay.kt) is a single day solution
 - [Advent](./solutions/src/commonMain/kotlin/in/procyk/adventofcode/solutions/Advent.kt) is a collection of solutions
@@ -27,7 +27,7 @@ and sharing them as an interactive solver.
 
 #### [runner](./runner/src/commonMain/kotlin/in/procyk/adventofcode/runner)
 
-`implementation("in.procyk.adventofcode:runner:1.0.2")`
+`implementation("in.procyk.adventofcode:runner:1.1.0")`
 
 - [FileAdventInputReader](./runner/src/commonMain/kotlin/in/procyk/adventofcode/runner/FileAdventInputReader.kt) is an
   instance of `AdventDay.InputReader` that allows to read inputs from system file
@@ -37,14 +37,14 @@ and sharing them as an interactive solver.
 
 #### [test-runner](./test-runner/src/commonMain/kotlin/in/procyk/adventofcode/runner)
 
-`implementation("in.procyk.adventofcode:test-runner:1.0.2")`
+`implementation("in.procyk.adventofcode:test-runner:1.1.0")`
 
 - [AdventTest](./test-runner/src/commonMain/kotlin/in/procyk/adventofcode/runner/AdventTest.kt) has easy assertions of
   solutions from [AdventDay](./solutions/src/commonMain/kotlin/in/procyk/adventofcode/solutions/AdventDay.kt)
 
 #### [solver](./solver/src/commonMain/kotlin/in/procyk/adventofcode/solver)
 
-`implementation("in.procyk.adventofcode:solver:1.0.2")`
+`implementation("in.procyk.adventofcode:solver:1.1.0")`
 
 - [AdventSolver](./solver/src/commonMain/kotlin/in/procyk/adventofcode/solver/AdventSolver.kt) implements UI for
   providing solutions and log outputs for Advent of Code based
@@ -76,7 +76,7 @@ and sharing them as an interactive solver.
 
 ```toml
 [versions]
-procyk-adventofcode = "1.0.2"
+procyk-adventofcode = "1.1.0"
 
 [libraries]
 procyk-adventofcode-runner = { module = "in.procyk.adventofcode:runner", version.ref = "procyk-adventofcode" }
