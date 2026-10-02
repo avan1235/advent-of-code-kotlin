@@ -7,5 +7,5 @@ plugins {
 
 allprojects {
   group = "in.procyk.adventofcode"
-  version = "1.1.0"
+  version = "1.1.1"
 }
