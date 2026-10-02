@@ -1,75 +1,47 @@
+import com.vanniktech.maven.publish.Checksum
+
 plugins {
-  id("maven-publish") apply true
-  id("signing") apply true
+  id("com.vanniktech.maven.publish")
 }
 
-ext["signing.keyId"] = System.getenv("SIGNING_KEY_ID")
-ext["signing.password"] = System.getenv("SIGNING_PASSWORD")
-ext["signing.key"] = System.getenv("SIGNING_KEY")
-ext["ossrhUsername"] = System.getenv("OSSRH_USERNAME")
-ext["ossrhPassword"] = System.getenv("OSSRH_PASSWORD")
+mavenPublishing {
+  checksums(Checksum.MD5, Checksum.SHA1)
+  excludeSignatureChecksums(true)
+  publishToMavenCentral(automaticRelease = true)
 
-operator fun ExtraPropertiesExtension.invoke(name: String) = ext[name]?.toString()
+  signAllPublications()
 
-afterEvaluate {
-  publishing {
-    repositories {
-      maven {
-        name = "sonatype"
-        setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-        credentials {
-          username = ext("ossrhUsername")
-          password = ext("ossrhPassword")
-        }
-      }
-      mavenLocal()
-    }
+  pom {
+    val githubUrl = "https://github.com/avan1235/advent-of-code-kotlin"
 
-    publications.withType<MavenPublication> {
-      val publication = this
-      val javadocJar = tasks.register("${publication.name}JavadocJar", Jar::class) {
-        archiveClassifier = "javadoc"
-        archiveBaseName = "${archiveBaseName.get()}-${publication.name}"
-      }
-      artifact(javadocJar)
-      pom {
-        val githubUrl = "https://github.com/avan1235/advent-of-code-kotlin"
+    name.set("Advent of Code in Kotlin")
+    description.set("Advent of Code Library")
+    inceptionYear.set("2024")
+    url.set(githubUrl)
 
-        name = "Advent of Code in Kotlin"
-        description = "Advent of Code Library"
-        url = githubUrl
-
-        licenses {
-          license {
-            name = "MIT"
-            url = "https://opensource.org/licenses/MIT"
-          }
-        }
-        developers {
-          developer {
-            id = "avan1235"
-            name = "Maciej Procyk"
-            email = "maciej@procyk.in"
-            url = "https://procyk.in"
-          }
-        }
-        issueManagement {
-          system = "GitHub"
-          url = "$githubUrl/issues"
-        }
-        scm {
-          url = githubUrl
-        }
+    licenses {
+      license {
+        name.set("MIT")
+        url.set("https://opensource.org/licenses/MIT")
+        distribution.set("https://opensource.org/licenses/MIT")
       }
     }
-  }
-
-  signing {
-    useInMemoryPgpKeys(
-      ext("signing.keyId"),
-      ext("signing.key"),
-      ext("signing.password"),
-    )
-    sign(publishing.publications)
+    developers {
+      developer {
+        id.set("avan1235")
+        name.set("Maciej Procyk")
+        email.set("maciej@procyk.in")
+        url.set("https://procyk.in")
+      }
+    }
+    issueManagement {
+      system.set("GitHub")
+      url.set("$githubUrl/issues")
+    }
+    scm {
+      url.set(githubUrl)
+      connection.set("scm:git:git://github.com/avan1235/advent-of-code-kotlin.git")
+      developerConnection.set("scm:git:ssh://git@github.com/avan1235/advent-of-code-kotlin.git")
+    }
   }
 }

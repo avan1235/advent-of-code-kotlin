@@ -28,7 +28,7 @@ jobs:
         id: changelog
         uses: metcalfc/changelog-generator@v4.1.0
         with:
-          mytoken: ${{ secrets.GITHUB_TOKEN }}
+          myToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
         id: create_release
@@ -80,10 +80,10 @@ jobs:
           TAG_VERSION: ${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}
 
       - name: Publish to MavenCentral
-        run: ./gradlew publishAllPublicationsToSonatypeRepository
+        run: ./gradlew publishToMavenCentral --no-configuration-cache
         env:
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-          SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
-          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
-          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.OSSRH_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.OSSRH_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_KEY }}
